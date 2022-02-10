@@ -1,0 +1,18 @@
+version: '3'
+services:
+  nginx:
+    image: fsouza/video-nginx
+    container_name: docker-nginx
+    privileged: true
+    ports:
+      - 80:80
+    volumes:
+      - ./data/nginx.conf:/usr/local/nginx/conf/nginx.conf
+      - ./data/ROOT:/opt/static/ROOT
+      - ./data/error:/opt/static/error
+    networks:
+      docker-nginx-net:
+networks:
+  docker-nginx-net:
+    ipam:
+      driver: default
